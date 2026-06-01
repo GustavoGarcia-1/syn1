@@ -15,7 +15,7 @@ export default class HUD {
       .setScrollFactor(0)
       .setDepth(99);
 
-    this.plantText = scene.add.text(16, 12, 'Plants: 0 / 3', {
+    this.plantText = scene.add.text(16, 12, '\u{1F331} Plants: 0 / 3', {
       fontSize: '20px',
       fontFamily: 'Cambria, Georgia, serif',
       color: '#ffffff',
@@ -33,7 +33,7 @@ export default class HUD {
   }
 
   updatePlants(count) {
-    this.plantText.setText(`Plants: ${count} / 3`);
+    this.plantText.setText(`\u{1F331} Plants: ${count} / 3`);
   }
 
   addTracker(label, key) {

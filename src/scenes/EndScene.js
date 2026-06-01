@@ -146,7 +146,7 @@ export class EndScene extends Phaser.Scene {
     this.add.text(width / 2, 340, [
       'Not all of your decisions supported the environment this time.',
       '',
-      'Every choice carries weight \u2014 the seeds we support,',
+      'Every choice carries weight. The seeds we support,',
       'the tools we use, and where we place our money',
       'all shape the world around us.',
       '',
