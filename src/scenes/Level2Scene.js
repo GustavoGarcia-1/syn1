@@ -39,14 +39,13 @@ export class Level2Scene extends BaseLevel {
 
     // HUD trackers
     this.hud.addTracker('Tool: Not selected', 'tool');
-    this.hud.addTracker(`Grass cut: 0/${this.totalGrass}`, 'grass');
+    this.hud.addTracker(`Grass cut: 0 / ${this.totalGrass}`, 'grass');
 
     // Grass patches along the level
     const grassPositions = [400, 600, 800, 1000, 1200, 1400, 1600, 1800];
     for (const gx of grassPositions) {
       const grass = this.add.rectangle(gx, height - 52, 60, 20, 0x006400);
       grass.setDepth(1);
-      // Add a little grass prop on top
       const grassTop = this.add.image(gx, height - 60, 'atlas-props', 'shrooms');
       grassTop.setScale(2);
       grassTop.setTint(0x006400);
@@ -67,25 +66,25 @@ export class Level2Scene extends BaseLevel {
       .setScrollFactor(0)
       .setDepth(200);
 
-    const bg = this.add.rectangle(0, 0, 480, 280, 0x333333, 0.95);
-    bg.setStrokeStyle(3, 0xffffff);
+    const bg = this.add.rectangle(0, 0, 480, 280, 0x1a1a2e, 0.95);
+    bg.setStrokeStyle(2, 0x5588bb);
 
     const title = this.add.text(0, -100, 'Choose Your Mower', {
-      fontSize: '28px', fontFamily: 'Arial', color: '#fff', fontStyle: 'bold',
+      fontSize: '28px', fontFamily: 'Cambria, Georgia, serif', color: '#ffffff', fontStyle: 'bold',
     }).setOrigin(0.5);
 
     const gasBtn = this.add.text(-120, 10, 'Gas Mower', {
-      fontSize: '22px', fontFamily: 'Arial', color: '#fff',
-      backgroundColor: '#cc3333', padding: { x: 20, y: 12 },
+      fontSize: '22px', fontFamily: 'Trebuchet MS, Verdana, sans-serif', color: '#ffffff',
+      backgroundColor: '#993333', padding: { x: 20, y: 12 },
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
     const electricBtn = this.add.text(120, 10, 'Electric Mower', {
-      fontSize: '22px', fontFamily: 'Arial', color: '#fff',
+      fontSize: '22px', fontFamily: 'Trebuchet MS, Verdana, sans-serif', color: '#ffffff',
       backgroundColor: '#228b22', padding: { x: 20, y: 12 },
     }).setOrigin(0.5).setInteractive({ useHandCursor: true });
 
-    const hint = this.add.text(0, 90, 'Pick your tool to mow the grass along the level', {
-      fontSize: '14px', fontFamily: 'Arial', color: '#aaa',
+    const hint = this.add.text(0, 90, 'Select a mower to cut the grass throughout the level.', {
+      fontSize: '14px', fontFamily: 'Trebuchet MS, Verdana, sans-serif', color: '#aaaacc',
     }).setOrigin(0.5);
 
     this.choiceGroup.add([bg, title, gasBtn, electricBtn, hint]);
@@ -117,7 +116,6 @@ export class Level2Scene extends BaseLevel {
 
     const px = this.playerController.sprite.x;
 
-    // Cut grass when walking over it
     for (const patch of this.grassPatches) {
       if (patch.cut) continue;
       const dist = Math.abs(px - patch.x);
@@ -128,7 +126,7 @@ export class Level2Scene extends BaseLevel {
         patch.top.setTint(0x90ee90);
         patch.top.setAlpha(0.5);
         this.grassCut++;
-        this.hud.updateTracker('grass', `Grass cut: ${this.grassCut}/${this.totalGrass}`);
+        this.hud.updateTracker('grass', `Grass cut: ${this.grassCut} / ${this.totalGrass}`);
       }
     }
   }
@@ -144,10 +142,10 @@ export class Level2Scene extends BaseLevel {
     this.hud.updatePlants(GameState.plantScore);
 
     this.popup.show(
-      isElectric ? `Plant Earned! (${GameState.plantScore}/3)` : 'No Plant Earned',
+      isElectric ? `Plant Earned! (${GameState.plantScore} / 3)` : 'No Plant Earned',
       isElectric
-        ? 'Great choice! Gas-powered lawn mowers lack the catalytic converters and emission controls that cars have. A single gas mower running for one hour emits as much pollution as driving a car for 100 miles. Electric mowers produce zero direct emissions!'
-        : 'Gas-powered lawn mowers have NO emission filtration systems unlike cars. One hour of gas mowing equals 100 miles of car emissions. They release volatile organic compounds, carbon monoxide, and nitrogen oxides directly into the air. Choose electric next time!',
+        ? 'Excellent decision. Gas-powered lawn mowers are classified as non-road engines and are exempt from the emission standards that regulate automobiles. Unlike cars, they have no catalytic converters, no exhaust filtration, and no onboard diagnostics. The Environmental Protection Agency estimates that one hour of gas mowing produces the same amount of volatile organic compounds and nitrogen oxides as driving a car approximately 100 miles. Electric mowers generate zero direct emissions, require less maintenance, and significantly reduce ground-level air pollution in residential areas.'
+        : 'Gas-powered lawn mowers operate without any of the emission control systems found in modern vehicles. There are no catalytic converters, no particulate filters, and no exhaust treatment. According to EPA data, a single gas mower running for one hour produces smog-forming pollution equivalent to driving a car roughly 100 miles. These engines release volatile organic compounds, carbon monoxide, and nitrogen oxides directly into the air at ground level, where people breathe. Choosing an electric mower next time would eliminate these emissions entirely.',
       isElectric,
       () => {
         this.scene.start('Level3Scene', { plants: GameState.plantScore });

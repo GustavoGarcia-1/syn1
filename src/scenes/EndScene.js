@@ -23,7 +23,7 @@ export class EndScene extends Phaser.Scene {
     // Play again button
     const replayBtn = this.add.text(width / 2, height - 70, 'PLAY AGAIN', {
       fontSize: '28px',
-      fontFamily: 'Arial, sans-serif',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
       color: '#ffffff',
       backgroundColor: '#2d5a27',
       padding: { x: 25, y: 12 },
@@ -62,11 +62,11 @@ export class EndScene extends Phaser.Scene {
     // Title
     this.add.text(width / 2, 60, 'You Did It!', {
       fontSize: '52px',
-      fontFamily: 'Georgia, serif',
-      color: '#2d5a27',
+      fontFamily: 'Cambria, Georgia, serif',
+      color: '#ffffff',
       fontStyle: 'bold',
-      stroke: '#ffffff',
-      strokeThickness: 4,
+      stroke: '#2d5a27',
+      strokeThickness: 5,
     }).setOrigin(0.5);
 
     // Crown
@@ -90,26 +90,29 @@ export class EndScene extends Phaser.Scene {
     // Congratulations
     this.add.text(width / 2, 210, 'Congratulations! You made all the right decisions.', {
       fontSize: '18px',
-      fontFamily: 'Georgia, serif',
-      color: '#2d5a27',
+      fontFamily: 'Cambria, Georgia, serif',
+      color: '#ffffff',
       fontStyle: 'bold',
+      shadow: { offsetX: 1, offsetY: 1, color: '#000000', blur: 4, fill: true },
     }).setOrigin(0.5);
 
     this.add.text(width / 2, 310, [
       'By rejecting corporate seed monopolies, you preserved biodiversity.',
-      'By choosing electric over gas, you cut harmful emissions.',
-      'By banking green, you defunded fossil fuel expansion.',
+      'By choosing electric over gas, you eliminated harmful emissions.',
+      'By banking with credit unions, you defunded fossil fuel expansion.',
       '',
-      'With these 3 plants, you\'ve done your part to keep',
-      'people fed, ecosystems healthy, and the planet thriving.',
+      'These three decisions represent real actions that individuals',
+      'can take to protect ecosystems, improve air quality,',
+      'and redirect financial resources toward sustainability.',
       '',
       'Small choices add up. Every decision matters.',
     ].join('\n'), {
-      fontSize: '14px',
-      fontFamily: 'Arial',
-      color: '#3a5a34',
+      fontSize: '13px',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#ffffff',
       align: 'center',
-      lineSpacing: 5,
+      lineSpacing: 4,
+      shadow: { offsetX: 1, offsetY: 1, color: '#000000', blur: 3, fill: true },
     }).setOrigin(0.5);
 
     // Confetti particles
@@ -117,24 +120,22 @@ export class EndScene extends Phaser.Scene {
   }
 
   _createLossScreen(width, height) {
-    // Desaturated background
-    this.cameras.main.setBackgroundColor('#4a4a4a');
+    this.cameras.main.setBackgroundColor('#2a2a2a');
 
-    // Apply grayscale post-processing
     if (this.cameras.main.postFX) {
       this.cameras.main.postFX.addColorMatrix().grayscale(0.6, false);
     }
 
     this.add.text(width / 2, 80, 'Game Over', {
       fontSize: '48px',
-      fontFamily: 'Georgia, serif',
+      fontFamily: 'Cambria, Georgia, serif',
       color: '#cc4444',
       fontStyle: 'bold',
     }).setOrigin(0.5);
 
-    this.add.text(width / 2, 150, `Plants collected: ${this.plants}/3`, {
+    this.add.text(width / 2, 150, `Plants collected: ${this.plants} / 3`, {
       fontSize: '28px',
-      fontFamily: 'Arial',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
       color: '#ffffff',
     }).setOrigin(0.5);
 
@@ -143,16 +144,16 @@ export class EndScene extends Phaser.Scene {
     foxy.setScale(4);
 
     this.add.text(width / 2, 340, [
-      'You didn\'t make all the right choices this time.',
+      'Not all of your decisions supported the environment this time.',
       '',
-      'The environment needs every decision to count.',
-      'From the seeds we plant, to the tools we use,',
-      'to where we put our money \u2014 it all matters.',
+      'Every choice carries weight \u2014 the seeds we support,',
+      'the tools we use, and where we place our money',
+      'all shape the world around us.',
       '',
-      'Try again and make every choice count!',
+      'Try again and see if you can earn all three plants.',
     ].join('\n'), {
       fontSize: '15px',
-      fontFamily: 'Arial',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
       color: '#cccccc',
       align: 'center',
       lineSpacing: 5,
@@ -160,7 +161,6 @@ export class EndScene extends Phaser.Scene {
   }
 
   _createConfetti(width, height) {
-    // Use simple colored rectangles for confetti particles
     const colors = [0xff6347, 0xffff00, 0x32cd32, 0x1e90ff, 0xff69b4, 0xffa500];
 
     for (let i = 0; i < 40; i++) {

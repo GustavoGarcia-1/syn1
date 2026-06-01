@@ -18,7 +18,7 @@ export class Level1Scene extends BaseLevel {
   getLevelConfig() {
     return {
       worldWidth: 2800,
-      levelName: 'Level 1: Seed Corporations',
+      levelName: 'Level 1: Seed Industry',
       pipeX: 2650,
       platforms: [
         { x: 350, y: 460 },
@@ -39,15 +39,15 @@ export class Level1Scene extends BaseLevel {
   createLevelContent() {
     const { height } = this.scale;
 
-    // HUD tracker for corporations rejected
-    this.hud.addTracker(`Corporations rejected: 0/${this.totalCorporations}`, 'rejected');
+    // HUD tracker
+    this.hud.addTracker(`Rejected: 0 / ${this.totalCorporations}`, 'rejected');
 
-    // Place corporations with building props
-    this._createCorporation(600, height, 'MegaSeed Corp', 'prop-house');
-    this._createCorporation(1400, height, 'MonoCrop Inc', 'prop-wooden-house');
-    this._createCorporation(2200, height, 'AgriGiant Co', 'prop-straw-house');
+    // Place corporations with professional names and building props
+    this._createCorporation(600, height, 'MegaSeed Industries', 'prop-house');
+    this._createCorporation(1400, height, 'MonoCrop International', 'prop-wooden-house');
+    this._createCorporation(2200, height, 'AgriGiant Holdings', 'prop-straw-house');
 
-    // Input keys for E and R
+    // Input keys
     this.keyE = this.input.keyboard.addKey('E');
     this.keyR = this.input.keyboard.addKey('R');
   }
@@ -63,21 +63,21 @@ export class Level1Scene extends BaseLevel {
 
     // Name label
     const label = this.add.text(x, y - building.displayHeight - 10, name, {
-      fontSize: '14px',
-      fontFamily: 'Arial, sans-serif',
-      color: '#cc0000',
+      fontSize: '13px',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#ffffff',
       fontStyle: 'bold',
-      stroke: '#ffffff',
-      strokeThickness: 2,
+      stroke: '#000000',
+      strokeThickness: 3,
     }).setOrigin(0.5).setDepth(3);
 
     // Interaction prompt (hidden until near)
-    const prompt = this.add.text(x, y - building.displayHeight - 30, '[E] Accept / [R] Reject', {
+    const prompt = this.add.text(x, y - building.displayHeight - 32, '[E] Accept  /  [R] Reject', {
       fontSize: '12px',
-      fontFamily: 'Arial, sans-serif',
-      color: '#333',
-      backgroundColor: '#ffffffdd',
-      padding: { x: 6, y: 3 },
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#ffffff',
+      backgroundColor: '#00000099',
+      padding: { x: 8, y: 4 },
     }).setOrigin(0.5).setVisible(false).setDepth(3);
 
     this.corporations.push({ x, building, label, prompt, name, decided: false });
@@ -98,36 +98,27 @@ export class Level1Scene extends BaseLevel {
         corp.prompt.setVisible(true);
 
         if (Phaser.Input.Keyboard.JustDown(this.keyE)) {
+          // Accept - no popup, just visual feedback
           corp.decided = true;
           corp.prompt.setVisible(false);
           corp.building.setTint(0x666666);
+          corp.label.setColor('#999999');
 
           GameState.decisions.level1 = 'bad';
           this.contrastEngine.onBadChoice();
           GameState.environmentalHealth = this.contrastEngine.health;
-
-          this.popup.show(
-            'You accepted ' + corp.name,
-            'By buying from large seed corporations, farmers eliminate biodiversity. Monoculture farming wipes out native plant species and makes ecosystems fragile. The short-term profit isn\'t worth the long-term environmental damage.',
-            false
-          );
         }
 
         if (Phaser.Input.Keyboard.JustDown(this.keyR)) {
+          // Reject - no popup, just visual feedback
           corp.decided = true;
           corp.prompt.setVisible(false);
           corp.building.setTint(0x88ff88);
-          corp.label.setColor('#228b22');
+          corp.label.setColor('#88ff88');
           this.corporationsRejected++;
-          this.hud.updateTracker('rejected', `Corporations rejected: ${this.corporationsRejected}/${this.totalCorporations}`);
+          this.hud.updateTracker('rejected', `Rejected: ${this.corporationsRejected} / ${this.totalCorporations}`);
 
           this.contrastEngine.onGoodChoice();
-
-          this.popup.show(
-            'You rejected ' + corp.name + '!',
-            'By supporting local seed diversity, you help preserve thousands of plant varieties that would otherwise go extinct. Diverse crops are more resilient to disease and climate change.',
-            true
-          );
         }
       } else {
         corp.prompt.setVisible(false);
@@ -146,10 +137,10 @@ export class Level1Scene extends BaseLevel {
     this.hud.updatePlants(GameState.plantScore);
 
     this.popup.show(
-      earned ? `Plant Earned! (${GameState.plantScore}/3)` : 'No Plant Earned',
+      earned ? `Plant Earned! (${GameState.plantScore} / 3)` : 'No Plant Earned',
       earned
-        ? 'You rejected all the seed corporations! Biodiversity is preserved. Native plants and niche crops survive because farmers like you choose local seeds over corporate monocultures.'
-        : 'You accepted some seed corporations. Monoculture farming has reduced plant biodiversity. Reject all corporations next time to earn the plant!',
+        ? 'You rejected all three seed corporations. Large-scale seed companies like these patent and monopolize seed genetics, forcing farmers to repurchase seeds every season rather than saving them. This practice eliminates thousands of locally adapted crop varieties that have been cultivated over generations. By supporting seed diversity, you help preserve the genetic resilience that protects food systems against disease, drought, and climate change. Diverse crops mean a more stable food supply for everyone.'
+        : 'You accepted one or more of the seed corporations. When farmers buy patented seeds from industrial suppliers, they become dependent on a single genetic line. Monoculture farming reduces biodiversity, weakens ecosystems, and makes entire food supplies vulnerable to a single disease or pest. The corporations you accepted control what gets planted, and over time, thousands of unique local crop varieties disappear forever. Reject all three corporations next time to earn the plant.',
       earned,
       () => {
         this.scene.start('Level2Scene', { plants: GameState.plantScore });

@@ -1,8 +1,64 @@
-I propose a project revolving around a game that will help communicate the effects actions have on the climate. I will program a game on my computer that people can play and make decisions and then visualize what effects these decisions have in real time. I’d like to do something like Super Mario Bros where you jump and run but are also prompted to make decisions. For example, the first level will be all sunshines and rainbows, nice weather and vibrant community health. You will be prompted at one point to make a decision like pick up the trash and you walk further and have to decide where to put it the trash can on the lower easier to reach level or go on a little trek to put it in the recyclable trash cans. If you choose to put it in the trash can the world will get worse and there will be visible statistics that show why. You will also be able to customize your character to make the game feel more relatable, and there will be animals throughout the game that maybe go extinct as you progress and make worse decisions . These decisions you have to make will be more thought out then just which trash can, but they will all lead up to an end goal. 
+You are an expert game developer and pixel-artist AI. Your task is to help design and program a 2D side-scrolling educational platformer. The goal of the game is to use engaging mechanics and striking visual aesthetics to teach players about high-impact, lesser-known environmental and climate decisions.
 
-In order to beat the game starting from the very beginning you have to make every correct decision and if you do your world stays the same and your rewarded at the end. What I need to complete this project are a couple of things mostly research related. Because its not physical I’d work purely online and most of my work would be done with knowledge I have about programming. But I’d still need to do research on the design choices for my game making it aesthetic so I can communicate more effectively, if people like what they see they are more likely to pay attention. I’d also have to look into all the statistics on what effects our climate the most and what actions we can take to change it. 
+Visual Style Blueprint
+The Inspiration: A fusion of Super Mario Bros. side-scrolling platforming mechanics and the vibrant, cozy, 2D pixel-art aesthetic of Stardew Valley.
 
+The Contrast Engine: The game relies on real-time visual degradation.
 
+Good Choices: The world remains a vibrant, calm, beautifully detailed pixel-art nature paradise filled with active animals, lush greenery, and bright lighting.
 
+Bad Choices: The environment instantly degrades. Colors desaturate to dull browns/grays, a mechanical hum or smog particles appear, animals disappear (extinction visual), and background elements turn into polluting industries.
 
-This is the refined idea for the game, you spawn into a loading screen you hit play game, you spawn into a stardew valley 2d game kind of like super mario bros, where you move to the right and eventually go down the pipe that takes you to the next level, there are animals all around the game is vibrant calm full of nature a healthy beautfiul world, that is inspired a little by the aesthetics of stardew valley, check stardewvalley.png for reference, this game mechanically should be like mario bros where you can jump move to the left collect power ups, this class is all about the environment so maybe there is a good drink or food you can pick up along the way that you take and it gives you like a speed boost , you make the game 3 levels, each level there will be a choice throughout that you have to make , level 1 will be how farmers choose to buy from big cooperations because they get more of a profit but that isnt whats best for the environment because if they just buy one seed its elimnating the rest of the seeds that exist and will get rid of the niche plants they have just to turn a profit so a lot of plants just go extinct, so for example this level can be where you have to say no to the big farm cooperations and push them away or seed ccooperations all throughout the level then when you get past the last one theres a big pop up that explains why its bad and its good that you rejected them and you also get + 1 plant there is a game bar in the top left that says like 0/3 plant emoji and you need to get 3 plants to beat the game and you get the plant by making the right decision at the end of each level, level 2 can be you have to pick a tool gas or electric lawn mower and you like move to the right you know along the level by cutting the grass that covers a lot and either way you reach the end but at the end of the last piece of grass there is a pop up that explains how using gas for the enviornment is way worse and how even tho cars have filtration systems for their gas use, law mowers don't , so if you pick electric you get plus + 1 plant if you use gas you dont get any, level 3 you get say 5 dollars of cash and you have to drop them each time into a bank as you move along the level, there is two choices of banks each time big banks or green credit unions, you have to choose the credit unions because the banks funel trillions of dollars into fossil fuel exppansion with the money you have sitting there, then at the end there is a pop up explainging if you made the correct choice and you also get + 1 plant if you did. Now once you reach the end if you have all 3 plants you get to like donate or plant the three plants and there is a pop thats like great job you have to done your part in making all the right decisons and with the these plants well take them and we will keep a bunch of people fed on this earth and happy on this earth with your decisons , or something along those lines of conggrualtions speech and award your player with a crown, 
+2. Core Game Mechanics & UI
+Movement: 2D Side-scroller (Move Left/Right, Jump, drop down pipes to transition levels).
+
+Power-ups: Environmental food/drink pickups scattered across levels that grant a temporary Speed Boost.
+
+The Win/Loss Condition (The Plant Bar):
+
+A UI tracker in the top-left corner displaying a plant counter: [🌱 0/3].
+
+Making the correct environmental choice at the end of a level awards +1 Plant.
+
+To perfectly beat the game, the player must finish with 3/3 plants.
+
+Level Completion End-State:
+
+If 3/3 Plants: The player reaches a final screen where they plant/donate the 3 plants. A congratulatory pop-up appears: "Great job! You have done your part in making all the right decisions. With these plants, we will keep people fed and happy on this Earth!" The player's customized character is awarded a Crown.
+
+If < 3 Plants: The world remains visually degraded, and the player is prompted to restart from the beginning to find the correct path.
+
+3. Detailed Level Implementation Data
+Level 1: The Monoculture Seed Crisis
+The Gameplay: The player moves right through a farm landscape. Along the way, they encounter aggressive or pushy corporate seed salesmen NPCs/stations. The player must physically navigate past them or "push them away" to say NO.
+
+The Final Choice Pop-up: Triggered at the end of the level after rejecting the big corporations.
+
+Text: "Fantastic job rejecting the big seed corporations! Commercial mega-farms often buy single-variety seeds from massive monopolies to maximize profit. However, eliminating niche local plants creates a dangerous monoculture, causing dozens of plant species to go extinct. By supporting seed diversity, you protect our ecosystem!"
+
+Reward: +1 Plant (UI updates to 1/3) -> Enter the level transition pipe.
+
+Level 2: The Grasslands & Emission Filters
+The Gameplay: The level is covered in tall grass. At the start, the player must pick a tool item block: a Gas-Powered Lawnmower or an Electric Lawnmower. The player moves right by actively cutting through the grass blocking their path. Both tools get you to the end, but they change the level's air quality.
+
+The Final Choice Pop-up: Triggered upon clearing the last piece of grass.
+
+Text: "While modern cars have heavily regulated filtration systems to clean up exhaust, small gas engines like lawnmowers do not. Running a standard gas leaf blower or mower for just one hour emits as much smog-forming pollution as driving a car over 1,000 miles! Choosing electric tools keeps our air clean."
+
+Reward: If Electric was chosen: +1 Plant (UI updates to 2/3). If Gas was chosen: +0 Plants and air turns smoky. -> Enter the level transition pipe.
+
+Level 3: The Financial Footprint
+The Gameplay: The player spawns with an economy counter showing $5 Cash. As they move right across the level, they encounter 5 distinct bank drop-points. At each point, they must deposit $1 into one of two options: a Big Traditional Bank or a Green Credit Union.
+
+The Final Choice Pop-up: Triggered after the 5th deposit.
+
+Text: "Did you choose the Green Credit Union? When your money sits in a massive traditional bank, it doesn't just sit still—those banks use your deposits to fund trillions of dollars in fossil fuel expansion and deforestation. Moving your money to a green credit union ensures your savings aren't secretly destroying the planet!"
+
+Reward: If the majority/all went to Credit Unions: +1 Plant (UI updates to 3/3). -> Proceed to the Final Crown Ceremony.
+
+4. Execution Directives for the AI
+Prioritize Aesthetic Integrity: Ensure all code scaffolding or asset mapping references a detailed 16-bit tileset palette reminiscent of Pelican Town (Stardew Valley).
+
+State Management: Create a clean global state tracking the plant_score (int), the current level (int), and an environmental_health variable that triggers structural tilemap palette shifts in real time when bad choices are made.
+
+Prompt Format: When writing code snippets, structure them cleanly into Modular Component Systems (Player Controller, Collision/Decision Triggers, UI/Pop-up Manager).

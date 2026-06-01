@@ -6,21 +6,37 @@ export class PreloadScene extends Phaser.Scene {
   }
 
   preload() {
-    // Loading bar
     const { width, height } = this.scale;
     const barW = 400;
     const barH = 30;
     const barX = (width - barW) / 2;
-    const barY = height / 2;
+    const barY = height / 2 + 40;
 
-    const bg = this.add.rectangle(width / 2, barY, barW + 4, barH + 4, 0x222222);
-    const bar = this.add.rectangle(barX + 2, barY - barH / 2 + 2, 0, barH, 0x3a7a34);
+    this.cameras.main.setBackgroundColor('#1a1a2e');
+
+    // Title text
+    this.add.text(width / 2, height / 2 - 60, 'Synthesis 1', {
+      fontSize: '42px',
+      fontFamily: 'Cambria, Georgia, serif',
+      color: '#ffffff',
+      fontStyle: 'bold',
+    }).setOrigin(0.5);
+
+    this.add.text(width / 2, height / 2 - 10, 'Project 3', {
+      fontSize: '28px',
+      fontFamily: 'Cambria, Georgia, serif',
+      color: '#c0c0c0',
+    }).setOrigin(0.5);
+
+    // Loading bar
+    this.add.rectangle(width / 2, barY, barW + 4, barH + 4, 0x333355);
+    const bar = this.add.rectangle(barX + 2, barY - barH / 2 + 2, 0, barH, 0x5588bb);
     bar.setOrigin(0, 0);
 
-    this.add.text(width / 2, barY - 50, 'Loading EcoQuest...', {
-      fontSize: '24px',
-      fontFamily: 'Georgia, serif',
-      color: '#2d5a27',
+    this.add.text(width / 2, barY + 30, 'Loading...', {
+      fontSize: '14px',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#888899',
     }).setOrigin(0.5);
 
     this.load.on('progress', (value) => {
@@ -58,6 +74,8 @@ export class PreloadScene extends Phaser.Scene {
     // ---- FX ----
     this.load.spritesheet('confetti', 'assets/fx/confetti.png', { frameWidth: 16, frameHeight: 16 });
 
+    // ---- MUSIC ----
+    this.load.audio('music', 'assets/environment/Space Jazz.mp3');
   }
 
   create() {
@@ -68,11 +86,9 @@ export class PreloadScene extends Phaser.Scene {
       key: 'eagle-fly',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'eagle/eagle-attack-',
-        start: 1,
-        end: 4,
+        start: 1, end: 4,
       }),
-      frameRate: 8,
-      repeat: -1,
+      frameRate: 8, repeat: -1,
     });
 
     // Frog idle
@@ -80,11 +96,9 @@ export class PreloadScene extends Phaser.Scene {
       key: 'frog-idle',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'frog/idle/frog-idle-',
-        start: 1,
-        end: 4,
+        start: 1, end: 4,
       }),
-      frameRate: 6,
-      repeat: -1,
+      frameRate: 6, repeat: -1,
     });
 
     // Opossum walk
@@ -92,47 +106,39 @@ export class PreloadScene extends Phaser.Scene {
       key: 'opossum-walk',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'opossum/opossum-',
-        start: 1,
-        end: 6,
+        start: 1, end: 6,
       }),
-      frameRate: 8,
-      repeat: -1,
+      frameRate: 8, repeat: -1,
     });
 
-    // Cherry spin (from atlas)
+    // Cherry spin
     this.anims.create({
       key: 'cherry-spin',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'cherry/cherry-',
-        start: 1,
-        end: 7,
+        start: 1, end: 7,
       }),
-      frameRate: 10,
-      repeat: -1,
+      frameRate: 10, repeat: -1,
     });
 
-    // Gem sparkle (from atlas)
+    // Gem sparkle
     this.anims.create({
       key: 'gem-sparkle',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'gem/gem-',
-        start: 1,
-        end: 5,
+        start: 1, end: 5,
       }),
-      frameRate: 8,
-      repeat: -1,
+      frameRate: 8, repeat: -1,
     });
 
-    // Item feedback (from atlas)
+    // Item feedback
     this.anims.create({
       key: 'item-feedback',
       frames: this.anims.generateFrameNames('atlas', {
         prefix: 'item-feedback/item-feedback-',
-        start: 1,
-        end: 4,
+        start: 1, end: 4,
       }),
-      frameRate: 12,
-      repeat: 0,
+      frameRate: 12, repeat: 0,
     });
 
     // Fruit animations (Pixel Adventure)
@@ -141,16 +147,14 @@ export class PreloadScene extends Phaser.Scene {
       this.anims.create({
         key: `${fruit}-spin`,
         frames: this.anims.generateFrameNumbers(fruit, { start: 0, end: 16 }),
-        frameRate: 14,
-        repeat: -1,
+        frameRate: 14, repeat: -1,
       });
     }
 
     this.anims.create({
       key: 'fruit-collect-fx',
       frames: this.anims.generateFrameNumbers('fruit-collected', { start: 0, end: 5 }),
-      frameRate: 14,
-      repeat: 0,
+      frameRate: 14, repeat: 0,
     });
 
     // Transition to menu

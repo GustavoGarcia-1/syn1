@@ -9,45 +9,54 @@ export default class HUD {
   create(scene, levelName) {
     this.scene = scene;
 
-    this.plantText = scene.add.text(16, 16, 'Plants: 0/3', {
+    // Semi-transparent dark panel behind HUD
+    this.panel = scene.add.rectangle(0, 0, 260, 0, 0x000000, 0.45)
+      .setOrigin(0, 0)
+      .setScrollFactor(0)
+      .setDepth(99);
+
+    this.plantText = scene.add.text(16, 12, 'Plants: 0 / 3', {
       fontSize: '20px',
-      fontFamily: 'Arial, sans-serif',
-      color: '#2d5a27',
-      backgroundColor: '#ffffffcc',
-      padding: { x: 10, y: 5 },
+      fontFamily: 'Cambria, Georgia, serif',
+      color: '#ffffff',
+      fontStyle: 'bold',
     }).setScrollFactor(0).setDepth(100);
 
-    this.levelText = scene.add.text(16, 50, levelName, {
-      fontSize: '16px',
-      fontFamily: 'Arial, sans-serif',
-      color: '#2d5a27',
-      backgroundColor: '#ffffffcc',
-      padding: { x: 10, y: 5 },
+    this.levelText = scene.add.text(16, 40, levelName, {
+      fontSize: '15px',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#ddeedd',
     }).setScrollFactor(0).setDepth(100);
 
-    this._nextY = 84;
+    this._nextY = 66;
+    this._updatePanel();
   }
 
   updatePlants(count) {
-    this.plantText.setText(`Plants: ${count}/3`);
+    this.plantText.setText(`Plants: ${count} / 3`);
   }
 
   addTracker(label, key) {
     const text = this.scene.add.text(16, this._nextY, label, {
-      fontSize: '14px',
-      fontFamily: 'Arial, sans-serif',
-      color: '#555',
-      backgroundColor: '#ffffffcc',
-      padding: { x: 10, y: 5 },
+      fontSize: '13px',
+      fontFamily: 'Trebuchet MS, Verdana, sans-serif',
+      color: '#ccddcc',
     }).setScrollFactor(0).setDepth(100);
 
     this.trackers[key] = text;
-    this._nextY += 34;
+    this._nextY += 22;
+    this._updatePanel();
   }
 
   updateTracker(key, text) {
     if (this.trackers[key]) {
       this.trackers[key].setText(text);
+    }
+  }
+
+  _updatePanel() {
+    if (this.panel) {
+      this.panel.height = this._nextY + 8;
     }
   }
 }
