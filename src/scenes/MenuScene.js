@@ -55,7 +55,7 @@ export class MenuScene extends Phaser.Scene {
     foxy.play('player-idle');
 
     // Title
-    this.add.text(width / 2, 100, 'EcoQuest', {
+    this.add.text(width / 2, 100, 'Super Environment', {
       fontSize: '64px',
       fontFamily: 'Cambria, Georgia, serif',
       color: '#ffffff',
@@ -65,7 +65,7 @@ export class MenuScene extends Phaser.Scene {
     }).setOrigin(0.5);
 
     // Subtitle
-    this.add.text(width / 2, 170, 'Make the right choices. Save the planet.', {
+    this.add.text(width / 2, 170, 'Make the right choices, to save the planet.', {
       fontSize: '18px',
       fontFamily: 'Trebuchet MS, Verdana, sans-serif',
       color: '#ffffff',
@@ -88,7 +88,7 @@ export class MenuScene extends Phaser.Scene {
     });
 
     // Info text
-    this.add.text(width / 2, 330, 'Collect 3 plants by making eco-friendly choices!', {
+    this.add.text(width / 2, 330, 'Collect 3 plants by making eco friendly choices!', {
       fontSize: '16px',
       fontFamily: 'Trebuchet MS, Verdana, sans-serif',
       color: '#ffffff',

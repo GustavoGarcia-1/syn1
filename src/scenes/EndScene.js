@@ -88,7 +88,7 @@ export class EndScene extends Phaser.Scene {
     }
 
     // Congratulations
-    this.add.text(width / 2, 210, 'Congratulations! You made all the right decisions.', {
+    this.add.text(width / 2, 210, 'Congratulations, You made all the right decisions !', {
       fontSize: '18px',
       fontFamily: 'Cambria, Georgia, serif',
       color: '#ffffff',
@@ -105,7 +105,7 @@ export class EndScene extends Phaser.Scene {
       'can take to protect ecosystems, improve air quality,',
       'and redirect financial resources toward sustainability.',
       '',
-      'Small choices add up. Every decision matters.',
+      'Small choices add up, every decision matters.',
     ].join('\n'), {
       fontSize: '13px',
       fontFamily: 'Trebuchet MS, Verdana, sans-serif',
