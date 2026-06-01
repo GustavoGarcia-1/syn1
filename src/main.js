@@ -1,4 +1,5 @@
 import Phaser from 'phaser';
+import { PreloadScene } from './scenes/PreloadScene.js';
 import { MenuScene } from './scenes/MenuScene.js';
 import { Level1Scene } from './scenes/Level1Scene.js';
 import { Level2Scene } from './scenes/Level2Scene.js';
@@ -10,6 +11,7 @@ const config = {
   width: 800,
   height: 600,
   parent: document.body,
+  pixelArt: true,
   physics: {
     default: 'arcade',
     arcade: {
@@ -17,7 +19,7 @@ const config = {
       debug: false,
     },
   },
-  scene: [MenuScene, Level1Scene, Level2Scene, Level3Scene, EndScene],
+  scene: [PreloadScene, MenuScene, Level1Scene, Level2Scene, Level3Scene, EndScene],
 };
 
 new Phaser.Game(config);
