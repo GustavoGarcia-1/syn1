@@ -55,7 +55,7 @@ export class MenuScene extends Phaser.Scene {
     foxy.play('player-idle');
 
     // Title
-    this.add.text(width / 2, 100, 'Super Environment', {
+    this.add.text(width / 2, 100, 'Environmental Adventures', {
       fontSize: '64px',
       fontFamily: 'Cambria, Georgia, serif',
       color: '#ffffff',
